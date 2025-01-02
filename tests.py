@@ -211,6 +211,57 @@ class TestAPIS:
             
 
 
+    def test_08_update(self):
+        print("enter test case 8")
+
+        header = {
+        "Content-Type": "application/json"
+        }
+
+        body ={
+        "name": "morpheus",
+        "job": "zion resident"
+        }
+
+        url = "https://reqres.in/api/users/2" 
+        response = requests.put(url,json=body, headers=header) #The PUT request updates an existing resource, and the server responds with metadata (e.g., updatedAt) confirming the update.
+        response_json = response.json()
+        print(response_json)
+
+        assert response.status_code == 200
+
+        if  response.status_code == 200:
+            print("Update Successful")
+
+
+        # Check if 'updatedAt' is in the response and assert its presence
+            assert 'updatedAt' in response_json  # Ensure 'updatedAt' is present in the response
+
+        # You may not receive 'name' and 'job' in the response based on the API design
+        # Instead, check the 'updatedAt' field, as it's likely returned to indicate when the update occurred
+            assert response_json['updatedAt'] is not None  # Ensure 'updatedAt' is not None, indicating an update was made
+
+
+
+        # If you expect the updated data to be returned, you can also assert for 'name' and 'job' in the response
+            assert 'name' in response_json, "'name' field is missing from the response after update."
+            assert 'job' in response_json, "'job' field is missing from the response after update."
+
+        # Optionally, you can assert if the values returned match the body you sent, though it might not be part of the API response
+            assert response_json['name'] == body['name'], f"Expected 'name' to be {body['name']}, but got {response_json['name']}"
+            assert response_json['job'] == body['job'], f"Expected 'job' to be {body['job']}, but got {response_json['job']}"
+        else:
+            print("Update Unsuccessful")
+            print((f"Unexpected Status Code:{response.status_code}"))
+
+        
+
+
+
+
+
+
+
         
         
 
