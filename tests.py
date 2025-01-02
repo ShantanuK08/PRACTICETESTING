@@ -18,3 +18,101 @@ class TestAPIS:
         assert response_json["data"] is not None, "Response does not contain 'data' key"
         assert response.json()['page'] == 2
         print("Exit")
+
+    def test_02_singleusers(self):
+        print("inside test case 2")
+        assert True
+
+        header = {}
+        body = {}
+
+        url = "https://reqres.in/api/users/2"
+        response = requests.get(url)
+        response_json = response.json()
+        
+        print( response_json)
+        assert response.status_code == 200
+        assert response_json["data"]['id']==2
+        assert response_json["data"]['email'] 
+        assert response_json
+
+
+        print(json.dumps(response_json, indent=4)) 
+        print("User ID:", response_json["data"]["id"])
+        print("Email:", response_json["data"]["email"])
+
+        print("exit test case 2")
+
+
+
+    def test_03_single_user_not_found(self):
+        print ("inside test case 3")
+
+        header ={}
+        body = {}
+
+        url = "https://reqres.in/api/users/23"
+        response = requests.get(url)
+        response_json = response.json
+        print(response_json)
+        
+        assert response.status_code == 404
+        
+        print("exit test case 3")
+
+
+    def test_04_list_resourse(self):
+        print("inside testcase 4")
+
+        header = {}
+        body = {}
+
+        url = "https://reqres.in/api/unknown"
+        response = requests.get(url)
+        response_json = response.json()
+        print(response_json)
+
+        assert response.status_code == 200
+
+
+        # assert response_json["data"][0]['id'] #Access the first element of the list: response_json["data"][0] accesses the first element of the list (since Python lists are 0-indexed).
+
+        
+        # Check if 'data' exists and is a list with at least one item
+        if "data" in response_json and isinstance(response_json["data"], list) and len(response_json["data"]) > 0:
+             assert "id" in response_json["data"][0]  # Ensure the 'id' exists in the first item
+        else:
+             print("No data or empty list found.")
+
+
+
+        #isinstance(response_json["data"], list): # This checks if the value corresponding to the "data" key is a list.
+                                                  # If the value is a list, isinstance() will return True, otherwise it returns False.
+                                                  # len(response_json["data"]) > 0:
+                                                  # This checks if the list response_json["data"] contains at least one element.
+                                                  # The len() function returns the length of the list, and > 0 ensures that the list isn't empty.
+
+        if "email" in response_json["data"][0]:
+         assert response_json["data"][0]["email"]
+        else:
+            print("No email found in the first element.")
+
+        
+
+    # Print User ID and Email
+        print("User ID:", response_json["data"][0]["id"])  # Access the first item and then its "id"
+        
+
+        print("exit test case 4")
+
+
+
+    def test_05_single_resourse(self):
+        print ("enter case 5")
+
+        header = {}
+        body ={}
+
+
+
+
