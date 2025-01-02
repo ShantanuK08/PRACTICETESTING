@@ -308,15 +308,32 @@ class TestAPIS:
         print("exit test case 9")
 
 
-        
-        
+    def test_10_delete(self):
+        print("enter test case 10")
+
+        header ={}
+        body = {}
+ 
+        url = "https://reqres.in/api/users/2"
+
+        response = requests.delete(url,headers=header, json=body)
+    
+          # Print status code to check if deletion was successful
+        print(response.status_code)  # Expect 204 for successful delete
+    
+
+        if response.status_code == 204:
+            print("Delete Successful")
+        else:
+            print(f"Delete Unsuccessful: {response.status_code}")
 
 
 
+    # No need to call .json() if the response is empty or contains no JSON
+    # Optionally, you can assert that the status code is 204
+    
 
-
-
-
+        print("exit testcase 10")
 
 
 
