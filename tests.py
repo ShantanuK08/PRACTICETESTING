@@ -170,3 +170,49 @@ class TestAPIS:
         }
 
         url = "https://reqres.in/api/users" 
+        response = requests.post(url)
+        response_json = response.json()
+        print(response_json)
+
+        assert response.status_code == 201
+
+         # Check the response status code & Id & CreatedAt
+        if response.status_code == 201:
+            print("Status code is 201")
+            assert 'id' in response_json  # Ensure the 'id' is in the response 
+            assert 'createdAt' in response_json  # Ensure the 'createdAt' field is present
+            
+        
+    # Ensure 'name' is in the response (if it's expected)
+        if 'name' in response_json:
+            assert response_json['name'] == body['name']  # Ensure the 'name' matches the input data
+
+        else:
+            print(f"Unexpected Status Code:{response.status_code}")  #f"...": This syntax indicates that it's a formatted string.
+            assert response.status_code == 201  # Fail the test if status code is not 201
+
+        
+        # # Check if 'id' is present in the response # FOR UNDERSTANDING
+
+        # if "id" in  response_json:
+        #     print("Id is present.:",response_json["id"])
+        # else:
+        #     print("Id not found")
+
+        # # Check if 'id' is a string
+
+        # if isinstance(response_json.get('id'),str):
+        #     print("Id is a String:",response_json['id'])
+        # else:
+        #     print("Id is not a string")
+
+
+        print("exit test case 7")
+            
+
+
+        
+        
+
+
+        
