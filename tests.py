@@ -443,8 +443,30 @@ class TestAPIS:
 
         print("exit test case 13 ")
 
+
+    def test_14_login_not_success(self):
+        print("enter test case 14")
+
+
         
         
+        header = {
+        "Content-Type": "application/json"
+        }
+
+        body={
+        "email": "peter@klaven"
+        }
+
+        url = "https://reqres.in/api/login"
+        response = requests.post(url,json=body, headers=header) #The PUT request updates an existing resource, and the server responds with metadata (e.g., updatedAt) confirming the update.
+        response_json = response.json()
+        print(response_json)
+
+        assert response.status_code == 400
+        print("Login not successful:",response.status_code == 400)
+
+
 
 
         
