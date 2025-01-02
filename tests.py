@@ -414,11 +414,34 @@ class TestAPIS:
 
 
     def test_13_login(self):
+        print("enter test case 13")
+
+
         
+        header = {
+        "Content-Type": "application/json"
+        }
 
 
+        body = {
+         "email": "eve.holt@reqres.in",
+         "password": "cityslicka"   
+        }
 
 
+        
+        url = "https://reqres.in/api/login"
+        response = requests.post(url,json=body, headers=header) #The PUT request updates an existing resource, and the server responds with metadata (e.g., updatedAt) confirming the update.
+        response_json = response.json()
+        print(response_json)
+
+        
+        assert response.status_code == 200
+
+        print("Login Successful:",response.status_code == 200)
+
+
+        print("exit test case 13 ")
 
         
         
