@@ -337,6 +337,75 @@ class TestAPIS:
 
 
 
+    def test_11_register_success(self):
+        print("enter test case 11")
+
+        
+        header = {
+        "Content-Type": "application/json"
+        }
+
+        
+
+        body = {
+        "email": "eve.holt@reqres.in",
+        "password": "pistol"
+        }
+        
+        url = "https://reqres.in/api/register" 
+        response = requests.post(url,json=body, headers=header) #The PUT request updates an existing resource, and the server responds with metadata (e.g., updatedAt) confirming the update.
+        response_json = response.json()
+        print(response_json)
+
+        
+        assert response.status_code == 200
+
+
+    # Assertion 1: Verify the HTTP status code
+        print(f"Verifying status code: Expected 200, got {response.status_code}")
+        assert response.status_code == 200, f"Expected 200, got {response.status_code}"
+
+    # Assertion 2: Verify the response contains the "token" key
+        print("Checking if 'token' key exists in the response...")
+        assert "token" in response_json, f"Response does not contain 'token': {response_json}"
+        print("'token' key exists in the response.")
+
+
+    # Assertion 3: Validate the value of the "token" (if applicable)
+        token = response_json["token"]
+        print(f"Validating the token: {token}")
+        assert len(response_json["token"]) > 0, "Token is empty or invalid"
+        print("Token is valid and non-empty.")
+
+
+
+        
+        if response.status_code == 200:
+            print("Register Successful")
+        else:
+            print(f"Register Unsuccessful: {response.status_code}")
+
+
+        print("Exit test case 11")
+
+    def  test_12_register_not_success(self):
+        print("enter test case 12")
+
+        
+        
+        header = {
+        "Content-Type": "application/json"
+        }
+
+        body = {
+        "email": "sydney@fife"
+        }
+
+
+
+
+
+
         
         
 
