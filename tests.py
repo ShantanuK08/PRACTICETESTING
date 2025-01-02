@@ -112,6 +112,25 @@ class TestAPIS:
 
         header = {}
         body ={}
+        
+        url = "https://reqres.in/api/unknown/2"
+        response = requests.get(url)
+        response_json = response.json()
+        print(response_json)
+
+        assert response.status_code == 200
+
+        if "data" in response_json and isinstance(response_json["data"],list) and len(response_json["data"]) > 0:
+            assert response_json['data'][0]['id']
+            assert response_json["data"][0]["email"]
+            
+        else:
+            print("No data or empty list found.")
+            print("No email found in the first element.")
+
+
+        print("User ID:", response_json["data"]["id"])
+        print("Name:", response_json["data"]["name"])
 
 
 
