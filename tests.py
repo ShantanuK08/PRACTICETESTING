@@ -400,7 +400,21 @@ class TestAPIS:
         body = {
         "email": "sydney@fife"
         }
+ 
 
+        url = "https://reqres.in/api/register"
+        response = requests.post(url,json=body, headers=header) #The PUT request updates an existing resource, and the server responds with metadata (e.g., updatedAt) confirming the update.
+        response_json = response.json()
+        print(response_json)
+
+        assert response.status_code == 400
+        print("Password Not Found:",response.status_code == 400)
+
+        print("exit test case 12")
+
+
+    def test_13_login(self):
+        
 
 
 
