@@ -131,7 +131,42 @@ class TestAPIS:
 
         print("User ID:", response_json["data"]["id"])
         print("Name:", response_json["data"]["name"])
+        
+        print("exit test case 5")
+ 
+
+    def test_06_single_resourse_notfound(self):
+        print("enter test case 6")
+    
+        header={}
+        body ={}
+
+        url = "https://reqres.in/api/unknown/23"        
+        response = requests.get(url)
+        response_json = response.json()
+        print(response_json)
+
+        assert response.status_code == 404
+
+          # Add if-else to print message based on status code
+        if response.status_code == 404:
+            print("404 Not Found")
+        else:
+            print(f"Unexpected status code: {response.status_code}")
 
 
+        print("exit test case 6")
 
+    def test_07_create(self):
+        print("enter test case 7")
 
+        header = {
+        "Content-Type": "application/json"
+        }
+
+        body = {
+        "name": "morpheus",
+        "job": "leader"
+        }
+
+        url = "https://reqres.in/api/users" 
