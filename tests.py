@@ -466,7 +466,36 @@ class TestAPIS:
         assert response.status_code == 400
         print("Login not successful:",response.status_code == 400)
 
+        print("exit test case 14")
 
+    def test_15_Delay_Response(self):
+        print("enter test case 15")
+
+        
+        
+        
+        header = {}
+        body = {}
+
+
+        url = "https://reqres.in/api/users?delay=3"
+        response = requests.get(url,json=body, headers=header)
+        response_json = response.json()
+        print(response_json)
 
 
         
+        assert response.status_code == 200
+        print("Login  successful:",response.status_code == 200)
+
+
+
+        print("exit test case 15")
+
+
+
+
+
+
+
+
