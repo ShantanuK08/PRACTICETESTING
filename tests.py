@@ -254,6 +254,13 @@ class TestAPIS:
             print("Update Unsuccessful")
             print((f"Unexpected Status Code:{response.status_code}"))
 
+        print("exit test case 8")
+
+
+    def test_09_update2(self):
+        print("enter test case 9")
+
+
         
 
 
